@@ -12,9 +12,13 @@ if (!fs.existsSync(dir)) {
 
 const natraj = async (URL, len) => {
     //Opening the browser
-    const browser = await puppeteer.launch({
-        headless: false
-    });
+    try {
+        const browser = await puppeteer.launch({
+            headless: false
+        });
+    } catch (error) {
+        console.log("Something went wrong");
+    } 
 
     //Making the passed URL more appropriate for the internet
     const url = slugify(URL);
