@@ -1,6 +1,6 @@
 {
   "name": "natraj",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "This is a package which downloads copyright free images from the well known sites - unsplash and pexels. To accomplish this, we scrape both of the websites and get the image's link which we later on download in a separate directory (present in the parent directory only).",
   "main": "index.js",
   "type": "module",
