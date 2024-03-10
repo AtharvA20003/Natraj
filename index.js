@@ -3,7 +3,7 @@ import fs from 'fs';
 import request from "request";
 import slugify from "slugify";
 let nightmare = Nightmare({ show: true });
-const natraj = async (URL, len) => {
+const natraj = async (whatKindOfPhotosYouWant, howManyOfThem) => {
 
     let dir = './Natraj';
 
@@ -13,7 +13,7 @@ const natraj = async (URL, len) => {
     }
     try {
         //Making the passed URL more appropriate for the internet
-        const url = slugify(URL);
+        const url = slugify(whatKindOfPhotosYouWant);
         
         //Opening 2 pages
         let linkFromUnsplash = []
@@ -60,15 +60,15 @@ const natraj = async (URL, len) => {
         }
         combinedResultFromBothSites.push(...linksFromPexels.slice(i));
         combinedResultFromBothSites.push(...linkFromUnsplash.slice(j));
-        len = typeof len !== "undefined" ? len : combinedResultFromBothSites.length-2;
+        howManyOfThem = typeof howManyOfThem !== "undefined" ? howManyOfThem : combinedResultFromBothSites.length-2;
         //If demanded images are more than what we could arrange, then telling the user about the same and downloading what little we could arrange.
-        if (len > combinedResultFromBothSites.length) {
+        if (howManyOfThem > combinedResultFromBothSites.length) {
             console.log(`We could only arrange ${combinedResultFromBothSites.length} images 🥲. Downloading those..`)
             download(combinedResultFromBothSites, url);
         }
         //Else downloading the required number of images.
         else {
-            combinedResultFromBothSites.splice(len);
+            combinedResultFromBothSites.splice(howManyOfThem);
             download(combinedResultFromBothSites, url);
         }
 
